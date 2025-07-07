@@ -17,13 +17,15 @@ class AssetController extends Controller
     public function index(Request $request)
     {
         //
+        if (!Auth::check()) {
+            return redirect()->to('/login');
+        }
         $query = Asset::query();
         if ($request) {
             $asset = $query->with('office')->where('asset_code', 'like', '%' . $request->search . '%')->orWhere('asset_name', 'like', '%' . $request->search . '%');
         } else {
             $asset = $query;
         }
-
         $total = Asset::query()->count();
         $electronic = Asset::query()->where('type', 'electronic')->count();
         $furnitur = Asset::query()->where('type', 'furnitur')->count();

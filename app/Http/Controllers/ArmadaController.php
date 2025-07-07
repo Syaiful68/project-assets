@@ -21,7 +21,7 @@ class ArmadaController extends Controller
         //
         $query = Armada::query()->with('vendor');
         if ($request) {
-            $asset = $query->where('asset_code', 'like', '%' . $request->search . '%')->orWhere('asset_name', 'like', '%' . $request->search . '%');
+            $asset = $query->where('plat_number', 'like', '%' . $request->search . '%');
         } else {
             $asset = $query;
         }

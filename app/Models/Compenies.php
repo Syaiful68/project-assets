@@ -9,6 +9,7 @@ class Compenies extends Model
 {
     //
     use SoftDeletes;
+
     protected $table = 'tb_compenies';
     protected $guarded = ['id'];
 }

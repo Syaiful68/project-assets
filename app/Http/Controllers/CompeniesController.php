@@ -18,12 +18,12 @@ class CompeniesController extends Controller
         //
         $query = Compenies::query();
         if ($request) {
-            $asset = $query->where('asset_code', 'like', '%' . $request->search . '%')->orWhere('asset_name', 'like', '%' . $request->search . '%');
+            $data = $query->where('compeny_name', 'like', '%' . $request->search . '%')->orWhere('onwer_name', 'like', '%' . $request->search . '%');
         } else {
-            $asset = $query;
+            $data = $query;
         }
         return Inertia::render('Vendors/index', [
-            'compeny' => $asset->paginate(10)
+            'compeny' => $data->paginate(10)
         ]);
     }
 

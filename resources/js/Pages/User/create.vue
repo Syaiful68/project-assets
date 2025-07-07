@@ -149,7 +149,7 @@ const submitUser = () => {
                                     <div class="mb-3">
                                         <label class="form-label">User</label>
                                         <input
-                                            type="number"
+                                            type="text"
                                             class="form-control"
                                             v-model="formData.user"
                                             :class="{

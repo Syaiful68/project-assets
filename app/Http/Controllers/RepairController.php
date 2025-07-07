@@ -19,9 +19,9 @@ class RepairController extends Controller
         //
         $query = Repair::query()->with('asset');
         if ($request) {
-            $asset = $query->where('repair', 'like', '%' . $request->search . '%');
+            $data = $query->where('repair_asset', 'like', '%' . $request->search . '%');
         } else {
-            $asset = $query;
+            $data = $query;
         }
 
         $total = Repair::query()->count();
@@ -30,7 +30,7 @@ class RepairController extends Controller
         $destroy = Repair::query()->where('status', 'destroy')->count();
 
         return Inertia::render('Repair/index', [
-            'data' => $asset->paginate(10),
+            'data' => $data->paginate(10),
             'asset' => Asset::get(['id', 'asset_code', 'asset_name']),
             'total' => $total,
             'repair' => $repair,

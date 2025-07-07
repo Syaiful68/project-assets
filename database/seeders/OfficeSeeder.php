@@ -27,6 +27,18 @@ class OfficeSeeder extends Seeder
                 'origin_id' => 3,
                 'office_name' => 'KP TELUK DALAM'
             ],
+            [
+                'origin_id' => 8,
+                'office_name' => 'KP TARUTUNG'
+            ],
+            [
+                'origin_id' => 7,
+                'office_name' => 'KP PADANG SIDEMPUAN'
+            ],
+            [
+                'origin_id' => 9,
+                'office_name' => 'KP GUNUNG TUA'
+            ],
         ];
 
         foreach ($data as $key => $value) {
