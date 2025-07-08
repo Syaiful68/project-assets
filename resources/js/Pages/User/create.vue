@@ -118,9 +118,9 @@ const submitUser = () => {
                                         <label class="form-label">Roles</label>
                                         <select
                                             class="form-control"
-                                            v-model="formData.origin"
+                                            v-model="formData.role"
                                             :class="{
-                                                'is-invalid': errors.origin,
+                                                'is-invalid': errors.role,
                                             }"
                                         >
                                             <option value="">Choise</option>
@@ -135,9 +135,9 @@ const submitUser = () => {
                                             </option>
                                         </select>
                                         <small
-                                            v-if="errors.origin"
+                                            v-if="errors.role"
                                             class="form-text text-muted"
-                                            >{{ errors.origin }}</small
+                                            >{{ errors.role }}</small
                                         >
                                     </div>
                                 </div>
