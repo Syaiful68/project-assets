@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Inertia\Inertia;
 use App\Models\office;
 use App\Models\origin;
-use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Inertia\Inertia;
 
 class UserController extends Controller
 {
@@ -58,7 +59,7 @@ class UserController extends Controller
 
         User::create([
             'nik' => $request->nik,
-            'user_name' => $request->name,
+            'user_name' => Str::upper($request->name),
             'origin_id' => $origin->id,
             'roles' => $request->roles,
             'user' => $request->user,

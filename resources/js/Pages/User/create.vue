@@ -19,7 +19,7 @@ const formData = reactive({
     nik: null,
     name: null,
     origin: "",
-    role: null,
+    roles: "",
     user: null,
     password: null,
     _token: page.props.csrf_token,
@@ -103,7 +103,7 @@ const submitUser = () => {
                                                     item, index
                                                 ) in props.origin"
                                                 :key="index"
-                                                :value="item.id"
+                                                :value="item.origin_code"
                                             >
                                                 {{ item.origin_name }}
                                             </option>
@@ -118,9 +118,9 @@ const submitUser = () => {
                                         <label class="form-label">Roles</label>
                                         <select
                                             class="form-control"
-                                            v-model="formData.role"
+                                            v-model="formData.roles"
                                             :class="{
-                                                'is-invalid': errors.role,
+                                                'is-invalid': errors.roles,
                                             }"
                                         >
                                             <option value="">Choise</option>
@@ -135,9 +135,9 @@ const submitUser = () => {
                                             </option>
                                         </select>
                                         <small
-                                            v-if="errors.role"
+                                            v-if="errors.roles"
                                             class="form-text text-muted"
-                                            >{{ errors.role }}</small
+                                            >{{ errors.roles }}</small
                                         >
                                     </div>
                                 </div>
