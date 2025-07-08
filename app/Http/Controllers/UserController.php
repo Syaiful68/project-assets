@@ -36,7 +36,7 @@ class UserController extends Controller
     {
         //
         return Inertia::render('User/create', [
-            'origin' => origin::get(['origin_code', 'origin_name'])
+            'origin' => origin::get(['origin_code', 'origin_name', 'id'])
         ]);
     }
 
@@ -49,21 +49,21 @@ class UserController extends Controller
         $request->validate([
             'nik' => 'required|unique:users,nik',
             'name' => 'required',
-            'origin' => 'required',
+            'origins' => 'required',
             'roles' => 'required',
             'user' => 'required',
             'password' => 'required',
         ]);
 
-        $origin = origin::query()->where('origin_code', $request->origin)->first();
-
+        $origin = origin::query()->where('origin_code', $request->origin)->first(['id']);
+        // dd($request->all());
         User::create([
             'nik' => $request->nik,
             'user_name' => Str::upper($request->name),
-            'origin_id' => $origin->id,
+            'origin_id' => $request->origins,
             'roles' => $request->roles,
             'user' => $request->user,
-            'passowrd' => Hash::make($request->password)
+            'password' => Hash::make($request->password)
         ]);
 
         return redirect()->to('/user');

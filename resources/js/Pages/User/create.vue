@@ -18,7 +18,7 @@ const roleUser = [
 const formData = reactive({
     nik: null,
     name: null,
-    origin: "",
+    origins: "",
     roles: "",
     user: null,
     password: null,
@@ -92,9 +92,9 @@ const submitUser = () => {
                                         >
                                         <select
                                             class="form-control"
-                                            v-model="formData.origin"
+                                            v-model="formData.origins"
                                             :class="{
-                                                'is-invalid': errors.origin,
+                                                'is-invalid': errors.origins,
                                             }"
                                         >
                                             <option value="">Choise</option>
@@ -103,15 +103,15 @@ const submitUser = () => {
                                                     item, index
                                                 ) in props.origin"
                                                 :key="index"
-                                                :value="item.origin_code"
+                                                :value="item.id"
                                             >
                                                 {{ item.origin_name }}
                                             </option>
                                         </select>
                                         <small
-                                            v-if="errors.origin"
+                                            v-if="errors.origins"
                                             class="form-text text-muted"
-                                            >{{ errors.origin }}</small
+                                            >{{ errors.origins }}</small
                                         >
                                     </div>
                                     <div class="mb-3">

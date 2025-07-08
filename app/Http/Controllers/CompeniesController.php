@@ -18,7 +18,7 @@ class CompeniesController extends Controller
         //
         $query = Compenies::query();
         if ($request) {
-            $data = $query->where('compeny_name', 'like', '%' . $request->search . '%')->orWhere('onwer_name', 'like', '%' . $request->search . '%');
+            $data = $query->where('compeny_name', 'like', '%' . $request->search . '%')->orWhere('owner_name', 'like', '%' . $request->search . '%');
         } else {
             $data = $query;
         }
