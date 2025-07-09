@@ -55,12 +55,11 @@ class UserController extends Controller
             'password' => 'required',
         ]);
 
-        $origin = origin::query()->where('origin_code', $request->origin)->first(['id']);
-        // dd($request->all());
+        $origin = origin::query()->where('origin_code', $request->origins)->first();
         User::create([
             'nik' => $request->nik,
             'user_name' => Str::upper($request->name),
-            'origin_id' => $request->origins,
+            'origin_id' => $origin->id,
             'roles' => $request->roles,
             'user' => $request->user,
             'password' => Hash::make($request->password)

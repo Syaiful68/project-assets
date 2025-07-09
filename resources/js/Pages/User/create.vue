@@ -103,7 +103,7 @@ const submitUser = () => {
                                                     item, index
                                                 ) in props.origin"
                                                 :key="index"
-                                                :value="item.id"
+                                                :value="item.origin_code"
                                             >
                                                 {{ item.origin_name }}
                                             </option>

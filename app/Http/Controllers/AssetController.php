@@ -68,7 +68,7 @@ class AssetController extends Controller
         if ($query->first() === null) {
             $n = 1;
         } else {
-            $n = $query->first()->id + 1;
+            $n = $query->latest()->first()->id + 1;
         }
         $code = $h . str_pad($n, 6, "0", STR_PAD_LEFT);
         Asset::create([
