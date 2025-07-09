@@ -21,7 +21,7 @@ class RepairExport implements FromView
     public function View(): View
     {
         return view('Export.repair', [
-            'repair' => $this->data
+            'data' => $this->data
         ]);
     }
 }

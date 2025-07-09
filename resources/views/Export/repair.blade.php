@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($repair as $value)
+        @foreach($data as $value)
         <tr>
             <td>{{ $value->asset->asset_code }}</td>
             <td>{{ $value->asset->asset_name }}</td>

@@ -24,6 +24,7 @@ class ExportController extends Controller
         $toDate = $request->to;
         if ($request->type === 'repair') {
             $data = Repair::query()->with('asset')->where('created_at', '>=', $fromDate)->where('created_at', '<=', $toDate)->get();
+            // dd($data);
             return (new RepairExport($data))->download('repair.xlsx');
         } else if ($request->type === 'asset') {
             $asset = Asset::query()->with(['office'])->where('created_at', '>=', $fromDate)->where('created_at', '<=', $toDate)->get();

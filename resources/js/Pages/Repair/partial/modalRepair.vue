@@ -8,6 +8,8 @@ defineProps({
     errors: Object,
 });
 
+const emits = defineEmits(["toggle"]);
+
 const formData = reactive({
     asset: "",
     description: null,
@@ -15,7 +17,13 @@ const formData = reactive({
 });
 
 const submitRepair = () => {
-    router.post("/repair", formData);
+    router.post("/repair", formData, {
+        onSuccess: () => {
+            formData.asset = null;
+            formData.description = null;
+            emits("toggle");
+        },
+    });
 };
 </script>
 
@@ -35,7 +43,7 @@ const submitRepair = () => {
                         class="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"
-                        @click="$emit('toggle')"
+                        @click="emits('toggle')"
                     ></button>
                 </div>
                 <form @submit.prevent="submitRepair">
@@ -85,7 +93,7 @@ const submitRepair = () => {
                             type="button"
                             class="btn btn-secondary"
                             data-bs-dismiss="modal"
-                            @click="$emit('toggle')"
+                            @click="emits('toggle')"
                         >
                             Close
                         </button>
