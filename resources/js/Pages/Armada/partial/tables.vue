@@ -19,6 +19,10 @@ function unduhFile(file) {
     return (window.location.href = `/download/${file}/armada`);
 }
 
+function editArmada(id) {
+    return router.get("/armada/" + id);
+}
+
 watch(
     search,
     _.debounce((value) => {
@@ -82,7 +86,13 @@ watch(
                         </button>
                     </td>
                     <td>
-                        <Link :href="'/armada/' + item.slug">Edit</Link>
+                        <button
+                            type="button"
+                            @click="editArmada(item.slug)"
+                            class="btn btn-sm btn-info btn-icon"
+                        >
+                            <i class="fas fa-info"></i>
+                        </button>
                     </td>
                 </tr>
             </tbody>

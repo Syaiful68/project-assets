@@ -13,6 +13,9 @@ const emit = defineEmits(["searchTerm"]);
 function unduhFile(file) {
     return (window.location.href = `/download/${file}/building`);
 }
+function editBuilding(id) {
+    return router.get("/builgin" + id);
+}
 
 watch(
     search,
@@ -66,19 +69,20 @@ watch(
                     <td>{{ item.rent }} Year</td>
                     <td>{{ item.contract }}</td>
                     <td>
-                        <a
-                            :href="'/download/' + item.id + '/building'"
-                            class="btn btn-0"
-                            >unduh</a
-                        >
-                        <!-- <button
+                        <button
                             type="button"
                             @click="unduhFile(item.id)"
-                            class="btn btn-0"
+                            class="btn btn-icon btn-success btn-success me-2"
                         >
-                            Unduh
-                        </button> -->
-                        <Link :href="'/building/' + item.id">Edit</Link>
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button
+                            type="button"
+                            @click="editBuilding(item.id)"
+                            class="btn btn-icon btn-info"
+                        >
+                            <i class="fas fa-info"></i>
+                        </button>
                     </td>
                 </tr>
             </tbody>

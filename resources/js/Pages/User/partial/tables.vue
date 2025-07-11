@@ -29,6 +29,9 @@ function deleteUser(id) {
         }
     });
 }
+function editUser(id) {
+    return router.get("/user/" + id);
+}
 
 const emit = defineEmits(["searchTerm"]);
 
@@ -91,12 +94,18 @@ watch(
                     <td>
                         <button
                             type="button"
-                            class="btn btn-sm"
+                            class="btn btn-icon btn-danger btn-rounded me-2"
                             @click="deleteUser(item.user)"
                         >
-                            Delete
+                            <i class="fas fa-trash-alt"></i>
                         </button>
-                        <Link :href="'/user/' + item.user">Edit</Link>
+                        <button
+                            type="button"
+                            class="btn btn-icon btn-info btn-rounded"
+                            @click="editUser(item.user)"
+                        >
+                            <i class="fas fa-info"></i>
+                        </button>
                     </td>
                 </tr>
             </tbody>
