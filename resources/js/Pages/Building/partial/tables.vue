@@ -10,8 +10,8 @@ const search = ref("");
 
 const emit = defineEmits(["searchTerm"]);
 
-function unduhFile(path) {
-    return (window.location.href = `http://project-1.test${path}`);
+function unduhFile(file) {
+    return (window.location.href = `/download/${file}/building`);
 }
 
 watch(
@@ -66,13 +66,18 @@ watch(
                     <td>{{ item.rent }} Year</td>
                     <td>{{ item.contract }}</td>
                     <td>
-                        <button
+                        <a
+                            :href="'/download/' + item.id + '/building'"
+                            class="btn btn-0"
+                            >unduh</a
+                        >
+                        <!-- <button
                             type="button"
-                            @click="unduhFile(item.file_path)"
+                            @click="unduhFile(item.id)"
                             class="btn btn-0"
                         >
                             Unduh
-                        </button>
+                        </button> -->
                         <Link :href="'/building/' + item.id">Edit</Link>
                     </td>
                 </tr>

@@ -170,7 +170,6 @@ const updateBuilding = () => {
                                                 'is-invalid': errors.contract,
                                             }"
                                         />
-                                        {{ props.building.file_name }}
                                     </div>
                                 </div>
                                 <div class="card-action">

@@ -61,7 +61,7 @@ class ArmadaController extends Controller
 
         $file = $request->file('file');
         $file_name = $file->getClientOriginalName();
-        $path = Storage::disk('public')->putFileAs('Building', $file, $file->hashName());
+        $path = Storage::disk('public')->putFileAs('Armada', $file, $file->hashName());
         $uri = Storage::url($path);
 
         $rent = intval($request->rent);

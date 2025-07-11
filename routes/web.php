@@ -10,6 +10,7 @@ use App\Http\Controllers\RepairController;
 use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\CompeniesController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\UserController;
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
@@ -31,5 +32,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/export/data', [ExportController::class, 'export']);
 
     // download file
+    Route::get('/download/{file}/building', [DownloadController::class, 'building'])->name("download.building");
+    Route::get('/download/{file}/armada', [DownloadController::class, 'armada'])->name('download.armada');
+
+    // barcode
+
+
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('isRoles:Admin');
 });
+// route::get('/barcode', function () {
+//     return Inertia::render('BarcodeView', [
+//         'barcode' => 'DTB00i2989'
+//     ]);
+// });

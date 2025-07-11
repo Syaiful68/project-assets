@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         //
-        $query = User::query()->with('origin');
+        $query = User::query()->with('origin')->withTrashed();
         if ($request) {
             $data = $query->where('user', 'like', '%' . $request->search . '%')->orWhere('user_name', 'like', '%' . $request->search . '%');
         } else {

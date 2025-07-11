@@ -1,12 +1,34 @@
 <script setup>
 import { ref, watch } from "vue";
-import { Link } from "@inertiajs/vue3";
+import { Link, router } from "@inertiajs/vue3";
+import Swal from "sweetalert2";
 import _ from "lodash";
 defineProps({
     data: Object,
 });
 
 const search = ref("");
+
+function deleteUser(id) {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            router.delete("/user/" + id);
+            Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+            });
+        }
+    });
+}
 
 const emit = defineEmits(["searchTerm"]);
 
@@ -45,6 +67,7 @@ watch(
                     <th>User</th>
                     <th>Origin</th>
                     <th>Roles</th>
+                    <th>Is Active</th>
                     <th></th>
                 </tr>
             </thead>
@@ -58,6 +81,21 @@ watch(
                     <td>{{ item.origin.origin_name }}</td>
                     <td>{{ item.roles }}</td>
                     <td>
+                        <span
+                            v-if="item.deleted_at === null"
+                            class="badge badge-success"
+                            >Active</span
+                        >
+                        <span v-else class="badge badge-danger">In Active</span>
+                    </td>
+                    <td>
+                        <button
+                            type="button"
+                            class="btn btn-sm"
+                            @click="deleteUser(item.user)"
+                        >
+                            Delete
+                        </button>
                         <Link :href="'/user/' + item.user">Edit</Link>
                     </td>
                 </tr>

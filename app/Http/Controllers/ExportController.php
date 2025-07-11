@@ -8,7 +8,6 @@ use App\Models\Asset;
 use App\Models\Repair;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Maatwebsite\Excel\Facades\Excel;
 
 class ExportController extends Controller
 {
@@ -23,12 +22,20 @@ class ExportController extends Controller
         $fromDate = $request->from;
         $toDate = $request->to;
         if ($request->type === 'repair') {
-            $data = Repair::query()->with('asset')->where('created_at', '>=', $fromDate)->where('created_at', '<=', $toDate)->get();
-            // dd($data);
+
+            if ($fromDate === $toDate) {
+                $data = Repair::query()->whereDate('created_at', $fromDate)->get();
+            } else {
+                $data = Repair::query()->whereDate('created_at', '>=', $fromDate)->whereDate('created_at', '<=', $toDate)->get();
+            }
             return (new RepairExport($data))->download('repair.xlsx');
         } else if ($request->type === 'asset') {
-            $asset = Asset::query()->with(['office'])->where('created_at', '>=', $fromDate)->where('created_at', '<=', $toDate)->get();
-            // dd($asset);
+
+            if ($fromDate === $toDate) {
+                $asset = Asset::query()->whereDate('created_at', $fromDate)->get();
+            } else {
+                $asset = Asset::query()->whereDate('created_at', '>=', $fromDate)->whereDate('created_at', '<=', $toDate)->get();
+            }
             return (new AssetExport($asset))->download('asset.xlsx');
         }
     }

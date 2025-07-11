@@ -1,5 +1,4 @@
 <script setup>
-import { reactive } from "vue";
 import { router, Link, useForm } from "@inertiajs/vue3";
 import Layout from "../Layout/index.vue";
 
@@ -96,7 +95,7 @@ const updateRepair = () => {
                                             >Handler</label
                                         >
                                         <input
-                                            type="number"
+                                            type="text"
                                             class="form-control"
                                             v-model="formData.handler"
                                             :class="{

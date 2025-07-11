@@ -2,7 +2,7 @@
 import { ref, watch } from "vue";
 import dayjs from "dayjs";
 import "dayjs/locale/id";
-import { Link } from "@inertiajs/vue3";
+import { Link, router } from "@inertiajs/vue3";
 import _ from "lodash";
 defineProps({
     data: Object,
@@ -14,6 +14,9 @@ const emit = defineEmits(["searchTerm"]);
 
 function timeFormat(timestamp) {
     return dayjs(timestamp).format("DD/MM/YYYY, HH:mm");
+}
+function unduhFile(file) {
+    return (window.location.href = `/download/${file}/armada`);
 }
 
 watch(
@@ -52,6 +55,7 @@ watch(
                     <th>Vehicle</th>
                     <th>Rent</th>
                     <th>Do Date</th>
+                    <th>Document</th>
                     <th></th>
                 </tr>
             </thead>
@@ -67,6 +71,15 @@ watch(
                     <td>
                         {{ timeFormat(item.created_at) }}
                         <!-- {{ item.created_at }} -->
+                    </td>
+                    <td>
+                        <button
+                            type="button"
+                            @click="unduhFile(item.slug)"
+                            class="btn btn-link"
+                        >
+                            {{ item.file_name }}
+                        </button>
                     </td>
                     <td>
                         <Link :href="'/armada/' + item.slug">Edit</Link>
