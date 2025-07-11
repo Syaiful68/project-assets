@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/export/data', [ExportController::class, 'export']);
 
     // download file
-    Route::get('/download/{file}/building', [DownloadController::class, 'building'])->name("download.building");
+    Route::get('/download/{file}/building', [DownloadController::class, 'office'])->name("download.building");
     Route::get('/download/{file}/armada', [DownloadController::class, 'armada'])->name('download.armada');
 
     // barcode
