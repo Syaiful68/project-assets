@@ -37,8 +37,6 @@ Route::middleware(['auth'])->group(function () {
 
     // barcode
 
-
-
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('isRoles:Admin');
 });
 // route::get('/barcode', function () {
